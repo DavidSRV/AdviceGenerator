@@ -1,8 +1,7 @@
 @use '../styles/co';
 
 .card {
-    border: 1px solid black;
-    max-width: 800px;
+    max-width: 750px;
     height: 400px;
     border-radius: 15px;
     display: flex;
@@ -21,8 +20,8 @@
         justify-content: space-evenly;
 
         & .card__title {
-            margin: 10px;
-            font-size: 0.8rem;
+            margin: -10px;
+            font-size: 1rem;
             letter-spacing: 3px;
             color: co.$NeonGreen;
         }
@@ -32,13 +31,17 @@
             text-align: center;
             font-size: 1.7rem;
             color: co.$LightCyan;
+            line-height: 40px;
         }
 
-        & .card__icon{
+        & .card__icon {
             width: 600px;
+            margin-top: -20px;
+            user-select: none;
+
         }
 
-        & .card__containerButton{
+        & .card__containerButton {
             position: absolute;
             bottom: 0;
             transform: translateY(50%);
@@ -47,10 +50,17 @@
             place-content: center;
             padding: 15px;
             border-radius: 50%;
+            cursor: pointer;
+            user-select: none;
 
-            & .card__button{
+            &:hover{
+                background-color: co.$NeonGreenHover;
+            }
+            & .card__button {
+                cursor: pointer;
+                user-select: none;
 
-                
+
             }
 
         }
