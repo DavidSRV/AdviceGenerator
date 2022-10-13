@@ -1,15 +1,19 @@
-@use '../styles/co';
+@use '../styles/co' as *;
+@use '../styles/style.scss' as *;
 
 .card {
-    max-width: 750px;
-    height: 400px;
+    max-width: 700px;
+    height: 370px;
     border-radius: 15px;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    background-color: co.$DarkGrayisBlue;
+    background-color: $DarkGrayisBlue;
     position: relative;
+
+    @include for-size(small) {
+        max-width: 380px;
+    }
 
     & .card__content {
         height: 100%;
@@ -19,25 +23,36 @@
         align-items: center;
         justify-content: space-evenly;
 
+        @include for-size(small) {
+            padding: 0 40px;
+            max-width: 380px;
+        }
+
         & .card__title {
-            margin: -10px;
             font-size: 1rem;
             letter-spacing: 3px;
-            color: co.$NeonGreen;
+            color: $NeonGreen;
         }
 
         & .card__paragraph {
-            margin-top: -30px;
             text-align: center;
             font-size: 1.7rem;
-            color: co.$LightCyan;
+            color: $LightCyan;
             line-height: 40px;
+
+            @include for-size(small) {
+                font-size: 1rem;
+            }
         }
 
         & .card__icon {
             width: 600px;
-            margin-top: -20px;
             user-select: none;
+
+            @include for-size(small) {
+                width: 90%;
+                margin-bottom: 20px;
+            }
 
         }
 
@@ -45,7 +60,7 @@
             position: absolute;
             bottom: 0;
             transform: translateY(50%);
-            background-color: co.$NeonGreen;
+            background-color: $NeonGreen;
             display: grid;
             place-content: center;
             padding: 15px;
@@ -53,14 +68,20 @@
             cursor: pointer;
             user-select: none;
 
-            &:hover{
-                background-color: co.$NeonGreenHover;
+            &:hover {
+                -webkit-box-shadow: 1px 0px 77px 23px $NeonGreen;
+                -moz-box-shadow: 1px 0px 77px 23px $NeonGreen;
+                box-shadow: 1px 0px 77px 23px $NeonGreen;
             }
+
             & .card__button {
+                width: 30px;
                 cursor: pointer;
                 user-select: none;
 
-
+                @include for-size(small) {
+                    width: inherit;
+                }
             }
 
         }

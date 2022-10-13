@@ -2,33 +2,35 @@ import "./_CardStyle.scss";
 import button from "../assets/images/icon-dice.svg";
 import divider from "../assets/images/pattern-divider-desktop.svg";
 import dividerMobile from "../assets/images/pattern-divider-mobile.svg";
-import { getData } from "../service/randomAdvice";
+import { fetchData } from "../service/randomAdvice";
 import { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 function Card() {
-  const [loaded, setLoaded] = useState(false);
   const [info, setInfo] = useState({});
+  const [load, setLoad] = useState(false);
 
   useEffect(() => {
-    getData()
+    fetchData()
       .then((data) => setInfo(data))
-      .finally(() => setLoaded(true));
-  },[]);
+      .finally(() => setLoad(true));
+  }, []);
 
-  console.log(info + " info")
-  console.log(loaded + " loaded")
+  const handleClick = () => {
+    fetchData().then((data) => setInfo(data));
+  };
+
+ const mobile = useMediaQuery({ query: '(max-width: 800px)'})
 
   return (
     <>
-      {loaded && (
+      {load && (
         <div className="card">
           <div className="card__content">
-            <p className="card__title">{`ADVICE #${info.slip.id}`}</p>
-            <p className="card__paragraph">
-              {info.slip.advice}
-            </p>
-            <img className="card__icon" src={divider} alt="divider" />
-            <div onClick={() => getData()} className="card__containerButton">
+            <p className="card__title">{`ADVICE #${info.id}`}</p>
+            <p className="card__paragraph">{info.advice}</p>
+            <img className="card__icon" src={mobile ? dividerMobile : divider } alt="divider" />
+            <div onClick={handleClick} className="card__containerButton">
               <img className="card__button" src={button} alt="Button" />
             </div>
           </div>
